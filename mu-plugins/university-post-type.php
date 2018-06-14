@@ -92,5 +92,21 @@ function fu_university_post_types() {
 		'supports'      => array( 'title', 'editor' ),
 		'show_in_rest'  => true,
 	) );
+
+    // Slider Post Type
+    register_post_type( 'slider', array(
+        'labels' => array(
+            'name'          => 'Slider',
+            'add_new_item'  => 'Add New Slider',
+            'edit_item'     => 'Edit Slider',
+            'all_items'     => 'All Sliders',
+            'singular_name' => 'Slider',
+        ),
+        'public'        => true,
+        'show_ui'       => true,  // show in admin panel
+        'rewrite'       => array( 'slug' => 'slider' ),
+        'menu_icon'     => 'dashicons-image-flip-horizontal',
+        'supports'      => array( 'title', 'editor', 'excerpt', 'thumbnail' ),
+    ) );
 }
 add_action( 'init', 'fu_university_post_types' );

@@ -32,7 +32,7 @@ function fu_enqueue() {
 
 	wp_localize_script( 'main-university-js', 'universityData', array(
 	    'root_url' => get_site_url(),
-	    'nonce'    => wp_create_nonce('wp_rest'),
+	    'nonce'    => wp_create_nonce('wp_rest'), // nonce number used once
     ) );
 }
 add_action( 'wp_enqueue_scripts', 'fu_enqueue' );
