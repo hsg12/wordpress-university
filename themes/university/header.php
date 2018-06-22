@@ -1,8 +1,17 @@
+<?php $theme_opts = get_option( 'fu_opts' ); ?>
+
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ) ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Fictional University">
+    <meta name="author" content="Admin">
+
+	<?php if ( isset($theme_opts['favicon']) ) : ?>      
+        <link rel="icon" href="<?php echo $theme_opts['favicon']; ?>" type="image/x-icon" />
+        <link rel="shortcut icon" href="<?php echo $theme_opts['favicon']; ?>" type="image/x-icon" />
+    <?php endif; ?>
 
 	<?php wp_head(); ?>
 </head>

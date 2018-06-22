@@ -18,12 +18,26 @@ jQuery(function($){
         $('ul#menu-main-header-menu li a[href="/events"]').parent('li').addClass('current-menu-item');
     }
 
-    //
+    /* Media for favicon */
+    
+    var frameFavicon = wp.media({
+        title: 'Select or upload favicon',
+        button: {
+            text: 'Use this media'
+        },
+        multiple: false // User can select only one image per select
+    });
+
+    $('#fu_uploadFaviconBtn').click(function(e){
+        e.preventDefault();
+        frameFavicon.open();
+    });
+
+    frameFavicon.on('select', function(){
+        var attachment = frameFavicon.state().get('selection').first().toJSON();
+        $('input[name=fu_inputFaviconImg]').val(attachment.url);
+    });
+    
+    /* End Block  */
 
 });
-
-
-
-
-
-

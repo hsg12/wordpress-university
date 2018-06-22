@@ -8,6 +8,10 @@ add_theme_support( 'post-thumbnails' );
 
 // Includes
 require get_theme_file_path('/includes/search-route.php');
+require get_theme_file_path('/includes/admin/menus.php');
+require get_theme_file_path('/includes/admin/options-page.php');
+require get_theme_file_path('/includes/admin/init.php');
+require get_theme_file_path('/process/save-options.php');
 
 
 // Action Hooks
@@ -164,3 +168,29 @@ function ourLoginCSS() {
 	wp_enqueue_style( 'fu-style' );
 }
 add_action( 'login_enqueue_scripts', 'ourLoginCSS' );
+
+function fu_activate() {
+	if ( version_compare( get_bloginfo( 'version' ), '4.2', '<' )) {
+		wp_die( 'You must have a minimum version of 4.2 to use this theme.' );
+	}
+
+	$theme_opts = get_option( 'fu_opts' );
+
+	if ( !$theme_opts ) {
+		$opts = array(
+			'favicon'   => '',
+			'phone'     => '',
+			'facebook'  => '',
+			'twitter'   => '',
+			'youtube'   => '',
+			'linkedin'  => '',
+			'instagram' => '',
+		);
+
+		add_option( 'fu_opts', $opts);
+	}
+}
+add_action( 'after_switch_theme', 'fu_activate' );
+
+add_action( 'admin_menu', 'fu_admin_menus' );
+add_action( 'admin_init', 'fu_admin_init' );
